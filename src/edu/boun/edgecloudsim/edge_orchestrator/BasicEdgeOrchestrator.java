@@ -283,8 +283,16 @@ public class BasicEdgeOrchestrator extends EdgeOrchestrator {
 				double dl = SimManager.getInstance().getEdgeOrchestrator().deadline(task, matrix, 0.0001);
 				double prob = matrix.getProbability(i, task.getTaskType().ordinal(), dl);
 				if (prob > bestProb) {
-					bestProb = prob;
-					bestDC = i;
+					Datacenter dc = SimManager.getInstance().edgeServerManager.getDatacenterList().get(i);
+					List<EdgeVM> vmArray = dc.getVmList();
+					for(int j = 0; j < vmArray.size(); j++) {
+						double requiredCapacity = ((CpuUtilizationModel_Custom)task.getUtilizationModelCpu()).predictUtilization(vmArray.get(j).getVmType());
+						double targetVmCapacity = (double)100 - vmArray.get(j).getCloudletScheduler().getTotalUtilizationOfCpu(CloudSim.clock());
+						if(requiredCapacity <= targetVmCapacity) {
+							bestProb = prob;
+							bestDC = i;
+						}
+						}
 					}
 				}
 		}
