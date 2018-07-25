@@ -59,7 +59,7 @@ public class MobileDeviceManager extends DatacenterBroker {
 	 * @post $none
 	 */
 	protected void submitCloudlets() {
-		
+
 	}
 	
 	/**
