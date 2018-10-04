@@ -1,0 +1,25 @@
+\section{Heuristics}\label{sec:heuristcic}
+\subsection{\textbf{Load Balancer Heuristics}}
+The load balancer is responsible for making an efficient task allocation decision so that the task can be processed within its individual deadline. The load balancer works in immediate mode. Therefore, upon the arrival, every task gets immediately allocated.  A buffer is present in every load balancer in case many tasks arrived at the same time. Thus, the load balancer can store some tasks to serve them in the future. There is no re-allocation considered after the task has been allocated by the load balancer due to the overhead produced by additional task transfer.
+
+\subsubsection{Maximum Robustness(MR)}
+According to the Maximum Robustness heuristic, load balancer allocates the arriving task considering its robustness across the \bs s. The robustness of a task is defined as the probability of that specific task to meet its deadline in a particular \bs. For instance, if the probabilities of the task to meet its deadline among 3 base stations "A", "B" and "C" are 0.8, 0.6, 0.5 respectively, then the task has the highest robustness in the \bs~"A".  
+
+At first, the load balancer calculates the probability of the arriving task to meet its deadline in receiving \bs~. After, the deadline meeting probabilities in all the neighboring \bs s are calculated. These probabilities are the set of values which represent robustness of the arriving task across the local \bs s. From this robustness set, the heuristic chooses the \bs~that provides the maximum value (the highest probability) and allocates the task to that \bs. Though, the highest probability needs to be greater than zero in order to be allocated. If there is no probability higher than zero within the set than the task is dropped.
+
+As the heuristic only selects one \bs~for the allocation, the situation when two or more \bs s have the same highest probability needs to be considered. In such situation, the tie can be resolved by considering the sparsity of two concurrent distributions. The sparsity is found from the standard deviations of respective distributions.% Another one is the vehicle's direction of movement. I commented this out as we don't consider it in our simulation just yet.
+ 
+\subsubsection{No Redirection(NR)}
+No Redirection heuristic does not consider the transfer of the task to the neighboring \bs s. Therefore, whenever the arriving task enters the load balancer of a specific \bs, it has to be allocated to that specific \bs. Nevertheless, allocation decision is also based on the task's robustness. For the task to be allocated, receiving \bs~has to offer the probability greater than a certain value. If this condition is not satisfied then the task is dropped.
+
+\subsubsection{Minimum Expected Completion Time(MECT)}
+MECT heuristic is one of the baseline approaches in the literature. The core concept of this heuristic is to minimize the expected completion time of each arriving task to make an allocation decision. At first, this heuristic uses the ETC matrix to calculate the average expected completion time ($\mu$) for the arriving task in every local \bs~. After that, the heuristic selects the \bs~which offers the minimum expected completion time and allocates the task. 
+
+\subsection{\textbf{Scheduler Heuristics}}
+After the load balancer allocation is performed, the scheduler of every \bs~allocates the task to the VMs. In our research, we use conventional scheduling policies. The scheduling policies are used along with the load balancer heuristics and provided as follows:\\
+
+\subsubsection{First Come First Serve(FCFS)}
+FCFS is one of the popular baselines for the task scheduling policy. According to this heuristic, the tasks that arrive earlier get scheduled first. In other words, the task which arrives first stays in the head of the queue and the task that arrive later stay in the tail. The scheduler allocates tasks from the head of the queue to VM's local queue for execution. Scheduling event occurs whenever a free spot appears in VM's local queue.
+
+\subsubsection{Shortest Job First(SJF)}
+SJF leverages the tasks with the shortest execution time. At first, the heuristic arranges the tasks in the batch queue according to their execution time in ascending order. Therefore, the tasks with a shorter execution time stay in the head of the queue and are scheduled immediately whenever a free spot appears in VM's local queue.

@@ -1,0 +1,33 @@
+\section{System Model}\label{sysmodel}
+\subsubsection{\textbf{Formulation}}
+
+In system model we propose, a set of tasks is generated from the sensor raw data and sent to a Processing Unit ( Edge or Cloud ). Every task has its own deadline within which it has to be completed. Allocation algorithm aims to maximize the number of tasks meeting their deadline. According to the problem definition, the set of arriving tasks can be defined as ``T", where  T = $\{t_1, t_2, t_3, t_4\dots,t_n\}$ and the set of Processing Units (PUs) ``S", where S = $\{s_1, s_2, s_3, s_4\dots,s_m\}$. The set of tasks that meet their deadline can be denoted as $T_s$, which is the subset of T ($T_s \subseteq$ T). It is assumed that a task $t_i$ is allocated to the PU $s_j$ when the task $t_i$ can meet its deadline $\delta_i$ in that specific PU. The problem can be formulated as:
+
+\begin{equation*}
+\begin{aligned}
+&  \underset{t}{\text{maximize}}
+& & \sum_{i=1}^{n} \sum_{j=1}^{m} t_i_j , where~t_i_j \in~$T_s$\\
+& \text{subject to}
+& &  t_i \leq \delta_i\ , where~t_i_j \in~$\{0,1\}$
+\end{aligned}
+\end{equation*}
+
+In the above equation $t_i_j$ is an indicator random variable that shows whether or not a task is allocated to a PU. Successful allocation is represented by 1 and by 0 otherwise. Therefore the above problem is Binary Integer Linear Program (BILP).
+          
+\subsubsection{\textbf{Assumptions}}
+
+In our system model, the Edge Node is a stationary device with memory storage, limited computational capacity and wireless communication capability \cite{•}. The Edge Node is located near the oil rig on the platform above the water surface. The Edge Node is capable of processing tasks in a real-time manner. Therefore, computationally intensive tasks are not suitable for the Edge Node. Nevertheless, Cloud Server has a massive processing power which is suitable for intensive computations. Different sensors (\eg~pipeline pressure, cathodic protection, flow monitoring, air pollution, tank levels, gas density) produce different data types (\eg~numbers, texts, images, videos) which are utilized by different applications (disaster management, remote monitoring system, etc.) \cite{bibid}. According to the variety of applications, we categorize arriving tasks by a task type. A task type represents different computational requests that are submitted by different applications. For instance, pipeline pressure sensor data, small video clips or images for remote monitoring center, drilling strategy, routine report generation, video streaming, temperature sensors data. Depending on the nature of different task types, some tasks are urgent or delay sensitive, and some are not urgent or delay tolerant. For instance, drilling strategy, routine report generation, video streaming, are delay tolerant tasks whereas pipeline pressure monitoring, oil spill monitoring, temperature monitoring tasks are delay sensitive. 
+
+Upon the arrival of the task to a PU, it is assigned an individual deadline. An individual deadline includes the task arrival time and the end-to-end delay the task can tolerate. In a real-time scenario, a disaster management application can submit requests that require high data rate (\eg thermal-maps, live footage of pressure valve). On the other hand, the number of applications can be large and each application may request several tasks simultaneously which may strain the capacity of the wireless network. For above-mentioned reasons, communication delay (uplink and downlink delay) can have a significant impact on the overall delay. Thus, we also consider a communication delay for a deadline calculation. For arriving task $t_i$, deadline $\delta_i$ can be defined as: $\delta_\textrm{i}$ = $arr_\textrm{i} + E_\textrm{i} + \epsilon$ + $\beta$, where $arr_\textrm{i}$ is the arrival time of the task, $E_\textrm{i}$ is the average task completion time, $\epsilon$ is a constant value defined by the processing device (slack time) and $\beta$ is the communication delay. 
+
+\subsubsection{\textbf{System Model Scenario}}
+Upon the arrival to the \pu~the task gets into a coordinator which works in an immediate mode to allocate arriving tasks to the \pu s. It allocates the task to the Edge Node or to the distant Cloud Server. Therefore, an arriving task gets immediately allocated. Then, it enters the batch queue of the \pu~for processing. The time passed from the arrival of the task until its processing completion can be defined as a ``computational delay" ($d_C$). Therefore $d_\textrm{P}$ can be defined as :  $d_\textrm{P}$ = $d_C$, where $d_C$ represents an average computational delay.
+
+\begin{figure}[h]
+	\centering	
+	\includegraphics[scale=0.45]{Figures/EdgeNode}
+	\caption{Architecture of the Edge Computing unit.}
+\end{figure}
+
+
+
