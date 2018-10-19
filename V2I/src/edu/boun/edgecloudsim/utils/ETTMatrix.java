@@ -58,6 +58,35 @@ public class ETTMatrix {
 			}
 		}
 	
+	//newConstructor
+	
+	public ETTMatrix(int _dataCenterNum) {
+		this.dataCenterNum = _dataCenterNum;
+		this.ettMatrix = new NormDistr[dataCenterNum][dataCenterNum];
+		for(int i = 0; i < dataCenterNum; i++) {
+			for(int j = 0; j < dataCenterNum; j++) {
+				this.ettMatrix[i][j] = null;
+			}	
+		}
+	}
+	
+	public void updateMatrix(HashMap<String, NormDistr> _distributions) {
+		
+		for(String key: _distributions.keySet()) {
+			
+			arrays = key.split("\\.");
+			int row = Integer.parseInt(arrays[0]);
+			int column = Integer.parseInt(arrays[1]);
+			NormDistr oldDistribution = this.distributions.get(key);
+			NormDistr newDistribution = _distributions.get(key);
+			NormDistr finalDistribution = oldDistribution.convolveDistr(newDistribution);
+			this.ettMatrix[row][column] = finalDistribution;
+		
+			}
+		this.distributions = _distributions;
+		
+	}
+	
 	public int getDataCnum() {
 		return dataCenterNum;
 	}

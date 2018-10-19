@@ -76,6 +76,7 @@ public class SimManager extends SimEntity {
 		//Create Client Manager
 		mobileDeviceManager = new MobileDeviceManager();
 		
+	
 		instance = this;
 	}
 	

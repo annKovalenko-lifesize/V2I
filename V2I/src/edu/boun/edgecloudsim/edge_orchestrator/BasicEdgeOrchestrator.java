@@ -132,24 +132,9 @@ public class BasicEdgeOrchestrator extends EdgeOrchestrator {
 
 	public EdgeVM selectVmOnLoadBalancer(Task task){
 		
-		getNeighbors();
-		//System.out.print("!!!!!");
-		
-		EdgeVM selectedVM  = getDC(task);
-		
-		if(selectedVM == null) {
-		
-		List<EdgeVM> vmArray = SimManager.getInstance().edgeServerManager.getDatacenterList().get(bestBS).getVmList();
-		
-		for(int j = 0; j < vmArray.size(); j++) {
-			double requiredCapacity = ((CpuUtilizationModel_Custom)task.getUtilizationModelCpu()).predictUtilization(vmArray.get(j).getVmType());
-			double targetVmCapacity = (double)100 - vmArray.get(j).getCloudletScheduler().getTotalUtilizationOfCpu(CloudSim.clock());
-			if(requiredCapacity <= targetVmCapacity) {
-				selectedVM = vmArray.get(j);
-				
-				}
-			}
-		}
+		getNeighbors();	
+		getDC(task);
+		EdgeVM selectedVM = getVM(task, bestBS);
 		return selectedVM;
 		
 	}
@@ -175,46 +160,58 @@ public class BasicEdgeOrchestrator extends EdgeOrchestrator {
 	}
 	
 	
-	
-	public EdgeVM getDC(Task task) {
-		
+	public EdgeVM getVM(Task task, int bs) {
 		EdgeVM selectedVM = null;
-
-		double dl = SimManager.getInstance().getEdgeOrchestrator().deadline(task, SimLogger.getInstance().matrix, 0.0001);
-		double bestProb = SimLogger.getInstance().matrix.getProbability(recBS, task.getTaskType().ordinal(), dl);
-		
-		List<EdgeVM> recvmArray = receivingBS.getVmList();
-		
-		for(int j = 0; j < recvmArray.size(); j++) {
-			double requiredCapacity = ((CpuUtilizationModel_Custom)task.getUtilizationModelCpu()).predictUtilization(recvmArray.get(j).getVmType());
-			double targetVmCapacity = (double)100 - recvmArray.get(j).getCloudletScheduler().getTotalUtilizationOfCpu(CloudSim.clock());
+		List<EdgeVM> vmArray = SimManager.getInstance().edgeServerManager.getDatacenterList().get(bs).getVmList();
+		for(int j = 0; j < vmArray.size(); j++) {
+			double requiredCapacity = ((CpuUtilizationModel_Custom)task.getUtilizationModelCpu()).predictUtilization(vmArray.get(j).getVmType());
+			double targetVmCapacity = (double)100 - vmArray.get(j).getCloudletScheduler().getTotalUtilizationOfCpu(CloudSim.clock());
 			if(requiredCapacity <= targetVmCapacity) {
-				selectedVM = recvmArray.get(j);
+				selectedVM = vmArray.get(j);
+				
 				}
 			}
+		return selectedVM;
+		
+	}
+	
+	
+	
+	public void getDC(Task task) {
+		
+
+		double dl = SimManager.getInstance().getEdgeOrchestrator().deadline(task, SimLogger.getInstance().matrix, 0.0001);
+		double bestProb = -1;
+		double prob = -1;
+		EdgeVM vm = null;
 		
 		for(int i = 0; i < neighboringBS.size(); i++) {
 			
-			double exMu = SimLogger.getInstance().matrix.getMu(neighboringBS.get(i), task.getTaskType().ordinal());
-			double exSigma = SimLogger.getInstance().matrix.getSigma(neighboringBS.get(i), task.getTaskType().ordinal());
-			double trMu = SimLogger.getInstance().ETTmatrix.getMu(recBS, neighboringBS.get(i));
-			double trSigma = SimLogger.getInstance().ETTmatrix.getSigma(recBS, neighboringBS.get(i));
+			if(neighboringBS.get(i) == recBS) {
+				prob = SimLogger.getInstance().matrix.getProbability(recBS, task.getTaskType().ordinal(), dl);
+			}
+			else {
+				double exMu = SimLogger.getInstance().matrix.getMu(neighboringBS.get(i), task.getTaskType().ordinal());
+				double exSigma = SimLogger.getInstance().matrix.getSigma(neighboringBS.get(i), task.getTaskType().ordinal());
+				double trMu = SimLogger.getInstance().ETTmatrix.getMu(recBS, neighboringBS.get(i));
+				double trSigma = SimLogger.getInstance().ETTmatrix.getSigma(recBS, neighboringBS.get(i));
+				double finalMu = exMu + trMu;
+				double finalSigma = Math.sqrt((exSigma*exSigma) + (trSigma*trSigma));
 			
-			double finalMu = exMu + trMu;
-			double finalSigma = Math.sqrt((exSigma*exSigma) + (trSigma*trSigma));
+				NormDistr resultDistr = new NormDistr(finalMu, finalSigma);
 			
-			NormDistr resultDistr = new NormDistr(finalMu, finalSigma);
+				prob = SimLogger.getInstance().matrix.getProbConvolved(dl, resultDistr);
+			}
 			
-			double prob = SimLogger.getInstance().matrix.getProbConvolved(dl, resultDistr);
+			vm = getVM(task, neighboringBS.get(i));
 			
-			if (prob > bestProb || selectedVM == null) {
-				bestProb = prob;
-				bestBS = neighboringBS.get(i);
+			if(vm != null) {
+				if (prob > bestProb) {
+					bestProb = prob;
+					bestBS = neighboringBS.get(i);
+					}
 				}
 			}
-		
-		return selectedVM;
-		
 	}
 	
 	/*
@@ -241,6 +238,7 @@ public class BasicEdgeOrchestrator extends EdgeOrchestrator {
 				neighboringBS.add(i);		
 				}
 			}
+		neighboringBS.add(recBS);
 
 	}
 

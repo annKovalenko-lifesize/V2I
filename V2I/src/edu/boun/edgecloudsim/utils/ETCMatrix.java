@@ -32,6 +32,19 @@ public class ETCMatrix {
 		
 	};
 	
+	//new constructor
+	
+	public ETCMatrix(int _dataCenterNum, int _taskTypeNum) {
+		this.dataCenterNum = _dataCenterNum;
+		this.taskTypeNum = _taskTypeNum;
+		this.etcMatrix = new NormDistr[dataCenterNum][taskTypeNum];
+		for(int i = 0; i < dataCenterNum; i++) {
+			for(int j = 0; j < taskTypeNum; j++) {
+				this.etcMatrix[i][j] = null;
+			}	
+		}
+	}
+	
 	/**
 	 * A parameterized constructor
 	 * @param vmTotalNum takes the total number of VMs in the simulation 
@@ -57,6 +70,23 @@ public class ETCMatrix {
 			
 			}
 		}
+	
+	public void updateMatrix(HashMap<String, NormDistr> _distributions) {
+		
+		for(String key: _distributions.keySet()) {
+			
+			arrays = key.split("\\.");
+			int row = Integer.parseInt(arrays[0]);
+			int column = Integer.parseInt(arrays[1]);
+			NormDistr oldDistribution = this.distributions.get(key);
+			NormDistr newDistribution = _distributions.get(key);
+			NormDistr finalDistribution = oldDistribution.convolveDistr(newDistribution);
+			this.etcMatrix[row][column] = finalDistribution;
+		
+			}
+		this.distributions = _distributions;
+		
+	}
 	
 	public int getDataCnum() {
 		return dataCenterNum;

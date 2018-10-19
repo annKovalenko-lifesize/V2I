@@ -9,15 +9,13 @@ public class NormDistr {
 	protected int hostID;
 	protected SimSettings.APP_TYPES taskType;
 	
-	@SuppressWarnings("unused")
-	private NormDistr() {
-		
+	NormDistr() {	
 	};
 	
 	public NormDistr(double _mean, double _stdev) {
 		
-		mean = _mean;
-		stdev = _stdev;
+		this.mean = _mean;
+		this.stdev = _stdev;
 	}
 
 	public double getMean() {
@@ -30,6 +28,18 @@ public class NormDistr {
 
 	public double getStdev() {
 		return stdev;
+	}
+	
+	public NormDistr convolveDistr(NormDistr b) {
+ 
+		double oldMu = this.mean;
+		double oldSigma = this.stdev;
+		double newMu = b.getMean();
+		double newSigma = b.getStdev();
+		double finalMu = oldMu + newMu;
+		double finalSigma = Math.sqrt((oldSigma*oldSigma) + (newSigma*newSigma));
+		NormDistr newDist = new NormDistr(finalMu, finalSigma);
+		return newDist;
 	}
 
 	public void setStdev(double stdev) {
