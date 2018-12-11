@@ -1,6 +1,0 @@
-- Performance increasing oversubscription level through decreasing simulation time. 
-- Experiment with performance in relation to the deadline tightness (I would try it through decreasing slack time?)
-- Maybe: Performance in relation to (emergency?), through increasing the % of delay intolerant tasks
-- Performance in relation to attractiveness variation ( all Base Stations equally attractive VS One-Two very attractive bs’s with a lot of unattractive ones )
-
-I also though that we could conduct Equal probabilities experiment - making a tie condition with a range of .01, thus when the receiving BS and the neighbor have nearly same probability, in one case the task will have to stay in receiving BS and in other case it will have to go to a neighboring BS. Compare the performance in both cases. 
