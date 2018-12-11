@@ -1,0 +1,32 @@
+\section{Experimental Set up}\label{sec:simulation}
+To evaluate the performance of our system we use a CloudSim simulation \cite{calheiros2011}. Cloudsim is a discrete event simulator which provides Cloud and Edge Computing models.  
+In our simulation \bs s are the edge devices which only have limited computational resources \cite{li2017resource}. Therefore, we implement \bs s in a form of small datacenters, where each datacenter is a machine with 5 cores. Each core is utilized by one VM. All VMs in a  \bs~are homogeneous, i.e. have the same computational power (MIPS). Nevertheless, \bs s are heterogeneous i.e. have different computational powers (MIPS). We also implement the bandwidth for every \bs~to calculate the communication latency in our scenario. All these parameters are scalable. In this work, we implement a small scale simulation which can be scaled up in future work. 
+In our simulation, we implement vehicular tasks as "cloudlets" with additional parameters added to the CloudSim's default configuration. We create 3 \bs s and a load balancer component which allocates the tasks according to our proposed heuristic. We also implement the ETC and ETT matrices for the load balancer to utilize.
+
+%The execution time of a task is represented in million instruction(mi) in this work. The task execution time distributions are generated based on Gaussian distribution \cite{li2017resource} for generating a range of execution time from 100 to 2000 MI. Depending on execution time we have considered two types of tasks.
+
+\subsection{\textbf{Workloads}}
+In our simulation, we randomly generate execution times using Gaussian distribution\cite{li2017resource}. We use results of the Extreme Scale System Center (ESSC) at Oak Ridge National Laboratory (ORNL)[\cite{khemka2015utility}, \cite{KHEMKA201514}] to implement the arrival time for each task. Initially, every \bs~is assigned an individual workload to create an oversubscription situation and to obtain historic estimated task completion times for the ETC matrix. Together with an individual workload, our receiving \bs~is assigned the major workload. This major workload is the one we consider for our results evaluation, i.e. the three individual workloads do not affect the results explicitly. The workloads are seeded and changed from trial to trial. By manipulating the number of tasks in the initial workloads, we can control the system's oversubscription level.
+\begin{figure*}[h]
+	\centering
+	\begin{minipage}[b]{0.49\linewidth}
+		\includegraphics[width=\linewidth]{SJF_100_Percentage.pdf}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[b]{0.49\linewidth}
+		\includegraphics[width=\linewidth]{SJF_150_Percentage_no_sd.pdf}
+	\end{minipage}
+	\caption{Initial over subscription with 100 and 150 Tasks (SJF).}
+\end{figure*}
+
+\begin{figure*}[h]
+	\centering
+	\begin{minipage}[b]{0.49\linewidth}
+		\includegraphics[width=\linewidth]{FCFS_100_Percentage.pdf}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[b]{0.49\linewidth}
+		\includegraphics[width=\linewidth]{FCFS_150_Percentage.pdf}
+	\end{minipage}
+	\caption{Initial over subscription with 100 and 150 Tasks (FCFS).}
+\end{figure*}     

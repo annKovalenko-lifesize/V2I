@@ -1,0 +1,34 @@
+\section{Heuristics}\label{heuristcic}
+\subsection{\textbf{Coordinator Heuristics}}
+The coordinator is responsible for making an efficient task allocation decision so that the task can be processed within its individual deadline. The coordinator works in immediate mode. Therefore, upon the arrival, every task gets immediately allocated.  A buffer is present in every coordinator in case many tasks arrive at the same time. Thus, the load balancer can store some tasks to serve them in the future. There is no re-allocation considered after the task has been allocated by the coordinator due to the overhead produced by additional task transfer.
+
+\begin{figure*}[h]
+	\centering
+	\begin{minipage}[b]{0.49\linewidth}
+		\includegraphics[width=\linewidth]{FCFS_Increased_Arrival_Tasks_700_14500.pdf}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[b]{0.49\linewidth}
+		\includegraphics[width=\linewidth]{SJF_Increased_Arrival_Tasks_700_14500.pdf}
+	\end{minipage}
+	\caption{Deadline missing rate is measured using 3 heuristics. Two different scheduling policies(FCFS \& SJF) is used for evaluation.}
+\end{figure*} 
+
+\subsubsection{\textbf{Baseline}}
+This is the baseline heuristic which means it considers there is no coordinator and no Edge Node. It allocates every task to the Cloud Server for processing in a conventional way (without considering any delay). Therefore, this heuristic allocates every arriving task to the Cloud for processing.    
+
+\subsubsection{\textbf{Maximum Certainty (MC)}}
+This heuristic aims to maximize the certainty of the task. When the arriving task enters the coordinator, the certainty of that task for the Edge and the Cloud is calculated. For the allocation, coordinator picks the \pu~(Edge or Cloud) that gives the highest task certainty.
+
+\subsubsection{\textbf{Task Type (TT)}}
+This heuristic uses the task type. In our system model, we have 3 different task types. From the arrived tasks heuristic selects the tasks which have the shortest deadlines (task type 1). After, it allocates them to the Edge Node due to the task type's real-time nature. Other tasks that have a less strict deadline are sent to the Cloud for processing. Therefore, this heuristic leverages the short real-time tasks to be processed in the Edge Node.
+\subsection{\textbf{Scheduler Heuristics}}
+After the task allocation is performed by a coordinator, the scheduler of every Edge Node allocates the task to the VMs. In our research, we use conventional scheduling policies. These scheduling policies are used along with the coordinator heuristics and provided as follows:\
+
+\subsubsection{First Come First Serve (FCFS)}
+FCFS is one of the popular baselines for the task scheduling policy. According to this heuristic, the tasks that arrive earlier get scheduled first. In other words, the task that arrives first stays in the head of the queue and the tasks that arrive later stay in the tail. The scheduler allocates tasks from the head of the queue to VM's local queue for execution. Scheduling event occurs whenever a free spot appears in VM's local queue.
+
+\subsubsection{Shortest Job First (SJF)}
+SJF leverages the tasks with the shortest execution time. At first, the heuristic arranges the tasks in the batch queue according to their execution time in ascending order. Therefore, the tasks with a shorter execution time stay in the head of the queue and are scheduled immediately whenever a free spot appears in VM's local queue.
+
+    

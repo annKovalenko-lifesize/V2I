@@ -1,0 +1,200 @@
+@inproceedings{khemka2014utility,
+	title={Utility {D}riven {D}ynamic {R}esource {M}anagement in an {O}versubscribed {E}nergy-{C}onstrained {H}eterogeneous {S}ystem},
+	author={Khemka, Bhavesh and Friese, Ryan and Pasricha, Sudeep and Maciejewski, Anthony A and Siegel, Howard Jay and Koenig, Gregory A and Powers, Sarah and Hilton, Marcia and Rambharos, Rajendra and Poole, Steve},
+	booktitle={Parallel \& Distributed Processing Symposium Workshops (IPDPSW), 2014 IEEE International},
+	pages={58--67},
+	year={2014},
+	organization={IEEE}
+}
+@inproceedings{korkmaz2006,
+	title={Internet access protocol providing QoS in vehicular networks with infrastructure support},
+	author={Korkmaz, G{\"o}khan and Ekici, Eylem and Ozguner, F},
+	booktitle={Intelligent Transportation Systems Conference, 2006. ITSC'06. IEEE},
+	pages={1412--1417},
+	year={2006},
+	organization={IEEE}
+}
+@inproceedings{mak2005,
+	title={A multi-channel VANET providing concurrent safety and commercial services},
+	author={Mak, Tony K and Laberteaux, Kenneth P and Sengupta, Raja},
+	booktitle={Proceedings of the 2nd ACM international workshop on Vehicular ad hoc networks},
+	pages={1--9},
+	year={2005},
+	organization={ACM}
+}
+@inproceedings{maeshima2007,
+	title={A roadside-to-vehicle communication system for vehicle safety using dual frequency channels},
+	author={Maeshima, Osamu and Cai, Shengwei and Honda, Teruhiko and Urayama, Hirofumi},
+	booktitle={Intelligent Transportation Systems Conference, 2007. ITSC 2007. IEEE},
+	pages={349--354},
+	year={2007},
+	organization={IEEE}
+}
+@article{pyun2016,
+	title={Resource allocation for vehicle-to-infrastructure communication using directional transmission},
+	author={Pyun, Sung-Yeop and Lee, Woongsup and Cho, Dong-Ho},
+	journal={IEEE Transactions on Intelligent Transportation Systems},
+	volume={17},
+	number={4},
+	pages={1183--1188},
+	year={2016},
+	publisher={IEEE}
+}
+@article{Lenstra1981,
+	author = {J. K. Lenstra and A. H. G. Rinnooy Kan},
+	title = {Complexity of vehicle routing and scheduling problems},
+	journal = {Networks},
+	volume = {11},
+	number = {2},
+	year = {1981},
+	pages = {221-227},
+	doi = {10.1002/net.3230110211},
+	url = {https://onlinelibrary.wiley.com/doi/abs/10.1002/net.3230110211},
+	eprint = {https://onlinelibrary.wiley.com/doi/pdf/10.1002/net.3230110211},
+	abstract = {Abstract The complexity of a class of vehicle routing and scheduling problems is investigated. We review known NPâ€hardness results and compile the results on the worstâ€case performance of approximation algorithms. Some directions for future research are suggested. The presentation is based on two discussion sessions during the Workshop to Investigate Future Directions in Routing and Scheduling of Vehicles and Crews, held at the University of Maryland at College Park, June 4â€“6, 1979.}
+}
+@article{Ullman1975,
+	author = {Ullman, J. D.},
+	title = {NP-complete Scheduling Problems},
+	journal = {J. Comput. Syst. Sci.},
+	issue_date = {June, 1975},
+	volume = {10},
+	number = {3},
+	month = jun,
+	year = {1975},
+	issn = {0022-0000},
+	pages = {384--393},
+	numpages = {10},
+	url = {http://dx.doi.org/10.1016/S0022-0000(75)80008-0},
+	doi = {10.1016/S0022-0000(75)80008-0},
+	acmid = {1740138},
+	publisher = {Academic Press, Inc.},
+	address = {Orlando, FL, USA},
+} 
+@inproceedings{mostafa2011,
+	title={A V2X-based approach for reduction of delay propagation in vehicular Ad-Hoc networks},
+	author={Mostafa, Ahmad and Vegni, Anna Maria and Singoria, Rekha and Oliveira, Talmai and Little, Thomas DC and Agrawal, Dharma P},
+	booktitle={ITS Telecommunications (ITST), 2011 11th International Conference on},
+	pages={756--761},
+	year={2011},
+	organization={IEEE}
+}
+@article{KHEMKA201514,
+	author = {"Bhavesh Khemka and Ryan Friese and Sudeep Pasricha and Anthony A. Maciejewski and Howard Jay Siegel and Gregory A.}, 
+	title = {"Utility maximizing dynamic resource management in an oversubscribed energy-constrained heterogeneous computing system"},
+	journal = {"Sustainable Computing: Informatics and Systems"},
+	volume = {"5"},
+	pages = {"14 - 30"},
+	year = {"2015"}
+}
+@article{khemka2015utility,
+	title={Utility functions and resource management in an oversubscribed heterogeneous computing environment},
+	author={Khemka, Bhavesh and Friese, Ryan and Briceno, Luis D and Siegel, Howard Jay and Maciejewski, Anthony A and Koenig, Gregory A and Groer, Chris and Okonski, Gene and Hilton, Marcia M and Rambharos, Rajendra and others},
+	journal={IEEE Transactions on Computers},
+	volume={64},
+	number={8},
+	pages={2394--2407},
+	year={2015},
+	publisher={IEEE}
+}
+@inproceedings{adachi2016cloud,
+	title={Cloud-assisted Dynamic Content Sharing among Vehicles},
+	author={Adachi, Yoshiaki and Yamaguchi, Hirozumi and Higashino, Teruo and Umedu, Takaaki},
+	booktitle={Computer and Information Technology (CIT), 2016 IEEE International Conference on},
+	pages={516--523},
+	year={2016},
+	organization={IEEE}
+}
+@inproceedings{liu2010rsu,
+	title={RSU-based real-time data access in dynamic vehicular networks},
+	author={Liu, Kai and Lee, Victor CS},
+	booktitle={Intelligent Transportation Systems (ITSC), 2010 13th International IEEE Conference on},
+	pages={1051--1056},
+	year={2010},
+	organization={IEEE}
+}
+@article{calheiros2011,
+	author = {Calheiros, Rodrigo N. and Ranjan, Rajiv and Beloglazov, Anton and De Rose, C\&\#x00e9;sar A. F. and Buyya, Rajkumar},
+	title = {CloudSim: A Toolkit for Modeling and Simulation of Cloud Computing Environments and Evaluation of Resource Provisioning Algorithms},
+	journal = {Softw. Pract. Exper.},
+	issue_date = {January 2011},
+	volume = {41},
+	number = {1},
+	month = {jan},
+	year = {2011},
+	issn = {0038-0644},
+	pages = {23--50},
+	numpages = {28},
+	acmid = {1951450},
+	publisher = {John Wiley \&amp; Sons, Inc.},
+	address = {New York, NY, USA}
+}
+@inproceedings{luoto2016system,
+	title={System level performance evaluation of LTE-V2X network},
+	author={Luoto, Petri and Bennis, Mehdi and Pirinen, Pekka and Samarakoon, Sumudu and Horneman, Kari and Latva-aho, Matti},
+	booktitle={European Wireless 2016; 22th European Wireless Conference; Proceedings of},
+	pages={1--5},
+	year={2016},
+	organization={VDE}
+}
+@INPROCEEDINGS{amini14,
+  author = {Amini Salehi, Mohsen and Caldwell, Thomas and Fernandez, Alejandro
+	and Mickiewicz, Emmanuel and Redberg, David and Rozier, Eric W. D.
+	and Zonouz, Saman},
+  title = {{RESeED: Regular Expression Search over Encrypted Data in the Cloud}},
+  booktitle = {Proceedings of the 7th IEEE Cloud conference},
+  year = {2014},
+  series = {Cloud '14},
+  month = {June},
+  note = {to Apear},
+  location = {to Appear}
+}
+@INPROCEEDINGS{Santos12,
+  author = {Santos, Nuno and Rodrigues, Rodrigo and Gummadi, Krishna P. and Saroiu,
+	Stefan},
+  title = {Policy-sealed data: a new abstraction for building trusted cloud
+	services},
+  booktitle = {Proceedings of the 21st USENIX conference on Security symposium},
+  year = {2012},
+  series = {Security'12},
+  pages = {10--24},
+  location = {Bellevue, WA}
+}
+@ARTICLE{Tang12,
+  author = {Tang, Yang and Lee, Patrick P. C. and Lui, John C. S. and Perlman,
+	Radia},
+  title = {Secure Overlay Cloud Storage with Access Control and Assured Deletion},
+  journal = {IEEE Transactions on Dependable Secure Computing},
+  year = {2012},
+  volume = {9},
+  pages = {903--916},
+  number = {6},
+  month = {Nov}
+}
+@inproceedings{perez06,
+  title={vTPM: virtualizing the trusted platform module},
+  author={Perez, Ronald and Sailer, Reiner and van Doorn, Leendert and others},
+  booktitle={Proceedings of the 15th Conference on USENIX Security Symposium},
+  pages={305--320},
+  year={2006}
+}
+@INPROCEEDINGS{amini14,
+  author = {Amini Salehi, Mohsen and Caldwell, Thomas and Fernandez, Alejandro
+	and Mickiewicz, Emmanuel and Redberg, David and Rozier, Eric W. D.
+	and Zonouz, Saman},
+  title = {{RESeED: Regular Expression Search over Encrypted Data in the Cloud}},
+  booktitle = {Proceedings of the 7th IEEE Cloud conference},
+  year = {2014},
+  series = {Cloud '14},
+  month = {June},
+  note = {to Apear},
+  location = {to Appear}
+}
+@inproceedings{tong2016hierarchical,
+	title={A hierarchical edge cloud architecture for mobile computing},
+	author={Tong, Liang and Li, Yong and Gao, Wei},
+	booktitle={INFOCOM 2016-The 35th Annual IEEE International Conference on Computer Communications, IEEE},
+	pages={1--9},
+	year={2016},
+	organization={IEEE}
+}
